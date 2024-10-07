@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>登録完了</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      font-size: 24px;
+      text-align: center;
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 18px;
+    }
+
+    .copy-btn {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      margin-left: 10px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .copy-btn:hover {
+      background-color: #45a049;
+    }
+
+    .app-btn {
+      display: inline-block;
+      margin: 10px 5px;
+      padding: 10px 20px;
+      background-color: #2196F3;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .app-btn:hover {
+      background-color: #1e88e5;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <h2>アカウント作成が完了しました！</h2>
+
+  </div>
+  <div>
+    <p>ログインID: <span id="loginId"><?= email ?></span></p>
+    <p> <button class="copy-btn" onclick="copyToClipboard('loginId')">コピー</button>
+    </p>
+
+    <p>パスワード: <span id="password"><?= password ?></span></p>
+    <p><button class="copy-btn" onclick="copyToClipboard('password')">コピー</button>
+    </p>
+  </div>
+  <div>
+    <p>アプリをインストールしてログインしてください。</p>
+
+    <a href="https://apps.apple.com/jp/app/line-works-%E3%83%93%E3%82%B8%E3%83%8D%E3%82%B9%E3%83%81%E3%83%A3%E3%83%83%E3%83%88/id1012129122"
+      target="_blank" class="app-btn">iPhoneの場合</a>
+    <a href="https://play.google.com/store/apps/details?id=com.gworks.oneapp.works" target="_blank"
+      class="app-btn">Androidの場合</a>
+
+    <script>
+      function copyToClipboard(elementId) {
+          var textToCopy = document.getElementById(elementId).textContent;
+          navigator.clipboard.writeText(textToCopy).then(function() {
+              alert('クリップボードにコピーしました: ' + textToCopy);
+          }, function(err) {
+              alert('クリップボードへのコピーに失敗しました: ', err);
+          });
+      }
+    </script>
+  </div>
+</body>
+
+</html>
