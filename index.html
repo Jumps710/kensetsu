@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>新規登録フォーム</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #4CAF50;
+      font-size: 24px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 24px;
+      text-align: center;
+    }
+
+    label {
+      font-size: 16px;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="tel"] {
+      width: 100%;
+      padding: 8px;
+      margin: 10px 0 20px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    #loadingMessage {
+      text-align: center;
+      font-size: 16px;
+      color: blue;
+    }
+
+    #errorMessage {
+      text-align: center;
+      font-size: 16px;
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>新規登録フォーム</h1>
+  <h2>渋谷駅前ワークスビル現場</h2>
+      <form id="registrationForm" onsubmit="event.preventDefault(); handleSubmit(this);">
+        <label for="companyName">会社名:</label><br>
+        <input type="text" id="companyName" name="companyName" required><br>
+
+        <label for="sei">セイ (全角カタカナ):</label><br>
+        <input type="text" id="sei" name="sei" required><br>
+
+        <label for="mei">メイ (全角カタカナ):</label><br>
+        <input type="text" id="mei" name="mei" required><br>
+
+        <label for="phone">電話番号:</label><br>
+        <input type="tel" id="phone" name="phone" required><br>
+
+        <input type="submit" value="送信">
+      </form>
+
+      <div id="loadingMessage"></div>
+      <div id="errorMessage"></div>
+
+      <script>
+        function handleSubmit(form) {
+            document.getElementById('loadingMessage').textContent = "少しお待ちください...";
+            document.getElementById('errorMessage').textContent = "";
+            google.script.run.withSuccessHandler(function(result) {
+                if (result.error) {
+                    document.getElementById('loadingMessage').textContent = "";
+                    document.getElementById('errorMessage').textContent = result.message;
+                } else {
+                    // URLでページを新しいタブで開く
+                    window.open('<?= getAppUrl() ?>?page=success&email=' + encodeURIComponent(result.email) + '&password=' + encodeURIComponent(result.password), '_blank');
+                }
+            }).submitForm(form);
+        }
+      </script>
+</body>
+
+</html>
