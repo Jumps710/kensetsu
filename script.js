@@ -9,13 +9,20 @@ function handleSubmit(form) {
     phone: form.phone.value
   };
 
-  fetch('https://script.google.com/macros/s/AKfycbyHHU5TThnk7mig-rjC2FLxEbCMhoXIhAhWMV0HY319jrmpRBKpc1A8ThXuYKJ74bfv/exec', {
+const params = new URLSearchParams();
+params.append('companyName', form.companyName.value);
+params.append('sei', form.sei.value);
+params.append('mei', form.mei.value);
+params.append('phone', form.phone.value);
+
+fetch('https://script.google.com/macros/s/AKfycbyHHU5TThnk7mig-rjC2FLxEbCMhoXIhAhWMV0HY319jrmpRBKpc1A8ThXuYKJ74bfv/exec', {
     method: 'POST',
-    body: JSON.stringify(formData),
     headers: {
-      'Content-Type': 'application/json'
-    }
-  })
+        'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: params
+})
+
   .then(response => response.json())
   .then(data => {
     if (data.error) {
