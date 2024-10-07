@@ -9,7 +9,7 @@ function handleSubmit(form) {
     phone: form.phone.value
   };
 
-  fetch('https://script.google.com/macros/s/WEB_APP_URL/exec', {
+  fetch('https://script.google.com/macros/s/AKfycbyHHU5TThnk7mig-rjC2FLxEbCMhoXIhAhWMV0HY319jrmpRBKpc1A8ThXuYKJ74bfv/exec', {
     method: 'POST',
     body: JSON.stringify(formData),
     headers: {
