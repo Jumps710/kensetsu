@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8">
   <title>登録完了</title>
@@ -60,40 +59,36 @@
     }
   </style>
 </head>
-
 <body>
   <div>
     <h2>アカウント作成が完了しました！</h2>
-
   </div>
   <div>
-    <p>ログインID: <span id="loginId"><?= email ?></span></p>
-    <p> <button class="copy-btn" onclick="copyToClipboard('loginId')">コピー</button>
-    </p>
+    <p>ログインID: <span id="loginId"></span></p>
+    <p> <button class="copy-btn" onclick="copyToClipboard('loginId')">コピー</button></p>
 
-    <p>パスワード: <span id="password"><?= password ?></span></p>
-    <p><button class="copy-btn" onclick="copyToClipboard('password')">コピー</button>
-    </p>
+    <p>パスワード: <span id="password"></span></p>
+    <p><button class="copy-btn" onclick="copyToClipboard('password')">コピー</button></p>
   </div>
   <div>
     <p>アプリをインストールしてログインしてください。</p>
-
-    <a href="https://apps.apple.com/jp/app/line-works-%E3%83%93%E3%82%B8%E3%83%8D%E3%82%B9%E3%83%81%E3%83%A3%E3%83%83%E3%83%88/id1012129122"
-      target="_blank" class="app-btn">iPhoneの場合</a>
-    <a href="https://play.google.com/store/apps/details?id=com.gworks.oneapp.works" target="_blank"
-      class="app-btn">Androidの場合</a>
-
-    <script>
-      function copyToClipboard(elementId) {
-          var textToCopy = document.getElementById(elementId).textContent;
-          navigator.clipboard.writeText(textToCopy).then(function() {
-              alert('クリップボードにコピーしました: ' + textToCopy);
-          }, function(err) {
-              alert('クリップボードへのコピーに失敗しました: ', err);
-          });
-      }
-    </script>
+    <a href="https://apps.apple.com/jp/app/line-works-%E3%83%93%E3%82%B8%E3%83%8D%E3%82%B9%E3%83%81%E3%83%A3%E3%83%83%E3%83%88/id1012129122" target="_blank" class="app-btn">iPhoneの場合</a>
+    <a href="https://play.google.com/store/apps/details?id=com.gworks.oneapp.works" target="_blank" class="app-btn">Androidの場合</a>
   </div>
-</body>
 
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    document.getElementById('loginId').textContent = urlParams.get('email');
+    document.getElementById('password').textContent = urlParams.get('password');
+
+    function copyToClipboard(elementId) {
+      var textToCopy = document.getElementById(elementId).textContent;
+      navigator.clipboard.writeText(textToCopy).then(function() {
+        alert('クリップボードにコピーしました: ' + textToCopy);
+      }, function(err) {
+        alert('クリップボードへのコピーに失敗しました: ', err);
+      });
+    }
+  </script>
+</body>
 </html>
