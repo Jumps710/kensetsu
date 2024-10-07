@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8">
   <title>新規登録フォーム</title>
@@ -34,8 +33,7 @@
       color: #333;
     }
 
-    input[type="text"],
-    input[type="tel"] {
+    input[type="text"], input[type="tel"] {
       width: 100%;
       padding: 8px;
       margin: 10px 0 20px 0;
@@ -75,44 +73,29 @@
     }
   </style>
 </head>
-
 <body>
   <h1>新規登録フォーム</h1>
   <h2>渋谷駅前ワークスビル現場</h2>
-      <form id="registrationForm" onsubmit="event.preventDefault(); handleSubmit(this);">
-        <label for="companyName">会社名:</label><br>
-        <input type="text" id="companyName" name="companyName" required><br>
 
-        <label for="sei">セイ (全角カタカナ):</label><br>
-        <input type="text" id="sei" name="sei" required><br>
+  <form id="registrationForm" onsubmit="event.preventDefault(); handleSubmit(this);">
+    <label for="companyName">会社名:</label><br>
+    <input type="text" id="companyName" name="companyName" required><br>
 
-        <label for="mei">メイ (全角カタカナ):</label><br>
-        <input type="text" id="mei" name="mei" required><br>
+    <label for="sei">セイ (全角カタカナ):</label><br>
+    <input type="text" id="sei" name="sei" required><br>
 
-        <label for="phone">電話番号:</label><br>
-        <input type="tel" id="phone" name="phone" required><br>
+    <label for="mei">メイ (全角カタカナ):</label><br>
+    <input type="text" id="mei" name="mei" required><br>
 
-        <input type="submit" value="送信">
-      </form>
+    <label for="phone">電話番号:</label><br>
+    <input type="tel" id="phone" name="phone" required><br>
 
-      <div id="loadingMessage"></div>
-      <div id="errorMessage"></div>
+    <input type="submit" value="送信">
+  </form>
 
-      <script>
-        function handleSubmit(form) {
-            document.getElementById('loadingMessage').textContent = "少しお待ちください...";
-            document.getElementById('errorMessage').textContent = "";
-            google.script.run.withSuccessHandler(function(result) {
-                if (result.error) {
-                    document.getElementById('loadingMessage').textContent = "";
-                    document.getElementById('errorMessage').textContent = result.message;
-                } else {
-                    // URLでページを新しいタブで開く
-                    window.open('<?= getAppUrl() ?>?page=success&email=' + encodeURIComponent(result.email) + '&password=' + encodeURIComponent(result.password), '_blank');
-                }
-            }).submitForm(form);
-        }
-      </script>
+  <div id="loadingMessage"></div>
+  <div id="errorMessage"></div>
+
+  <script src="script.js"></script>
 </body>
-
 </html>
