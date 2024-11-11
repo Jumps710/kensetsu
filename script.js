@@ -27,8 +27,8 @@ function handleSubmit(form) {
     if (data.error) {
       document.getElementById('errorMessage').textContent = data.message;
     } else {
-      // 成功時にsuccess.htmlを開く
-      window.open('success.html?email=' + encodeURIComponent(data.email) + '&password=' + encodeURIComponent(data.password), '_blank');
+      // 成功時にsuccess.htmlへ同じウィンドウで遷移
+      window.location.href = 'success.html?email=' + encodeURIComponent(data.email) + '&password=' + encodeURIComponent(data.password);
     }
     document.getElementById('loadingMessage').textContent = "";
   })
